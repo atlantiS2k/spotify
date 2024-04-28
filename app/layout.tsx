@@ -5,6 +5,7 @@ import { Figtree } from 'next/font/google';
 
 import SideBar from '@/components/SideBar';
 import { siteConf } from '@/config/sites';
+import ModalProvider from '@/providers/ModalProvider';
 import SupaBaseProvider from '@/providers/SupaBaseProvider';
 import UseProvider from '@/providers/UseProvider';
 
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body className={fontStyle.className}>
         <SupaBaseProvider>
           <UseProvider>
+            <ModalProvider />
             <SideBar>{children}</SideBar>
           </UseProvider>
         </SupaBaseProvider>
