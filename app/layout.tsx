@@ -7,6 +7,7 @@ import SideBar from '@/components/SideBar';
 import { siteConf } from '@/config/sites';
 import ModalProvider from '@/providers/ModalProvider';
 import SupaBaseProvider from '@/providers/SupaBaseProvider';
+import ToastProvider from '@/providers/ToastProvider';
 import UseProvider from '@/providers/UseProvider';
 
 const fontStyle = Figtree({ subsets: ['latin'] });
@@ -17,6 +18,12 @@ export const metadata: Metadata = {
     template: `%s | ${siteConf.name}`,
   },
   description: siteConf.description,
+  icons: [
+    {
+      url: '/',
+      href: '/icon/spoti2.png',
+    },
+  ],
   authors: [
     {
       name: siteConf.name,
@@ -40,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={fontStyle.className}>
+        <ToastProvider />
         <SupaBaseProvider>
           <UseProvider>
             <ModalProvider />
