@@ -14,14 +14,13 @@ type UserContextType = {
   isLoading: boolean;
   subscription: Subscription | null;
 };
-
 export const UserContext = createContext<UserContextType | undefined>(
   undefined
 );
 
 export interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [propName: string]: any;
+  [propsName: string]: any;
 }
 
 export const MyUserContextProvider = (props: Props) => {
@@ -32,11 +31,12 @@ export const MyUserContextProvider = (props: Props) => {
   } = useSessionContext();
   const user = useSupaUser();
   const accessToken = session?.access_token ?? null;
-  const [isLoadingData, setIsloadingdata] = useState(false);
+  const [isLoadingData, setIsLoadingdata] = useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
 
   const getUserDetails = () => supabase.from('users').select('*').single();
+
   const getSubscription = () =>
     supabase
       .from('subscriptions')
@@ -46,7 +46,7 @@ export const MyUserContextProvider = (props: Props) => {
 
   useEffect(() => {
     if (user && !isLoadingData && !userDetails && !subscription) {
-      setIsloadingdata(true);
+      setIsLoadingdata(true);
 
       Promise.allSettled([getUserDetails(), getSubscription()]).then(
         results => {
@@ -59,7 +59,8 @@ export const MyUserContextProvider = (props: Props) => {
           if (subscriptionPromise.status === 'fulfilled') {
             setSubscription(subscriptionPromise.value.data as Subscription);
           }
-          setIsloadingdata(false);
+
+          setIsLoadingdata(false);
         }
       );
     } else if (!user && !isLoadingUser && !isLoadingData) {
@@ -67,7 +68,6 @@ export const MyUserContextProvider = (props: Props) => {
       setSubscription(null);
     }
   }, [user, isLoadingUser]);
-
   const value = {
     accessToken,
     user,
