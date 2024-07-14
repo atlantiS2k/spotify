@@ -5,8 +5,11 @@ import { TbPlaylist } from 'react-icons/tb';
 import { useAuthModal } from '@/hooks/useAuthModal';
 import { useUploadModal } from '@/hooks/useUploadModal';
 import { useUser } from '@/hooks/useUser';
-
-const Library = () => {
+import { Songs } from '@/types/types';
+interface LibraryProps {
+  songs: Songs[];
+}
+const Library = ({ _songs }: LibraryProps) => {
   const autModal = useAuthModal();
   const uploadModal = useUploadModal();
 

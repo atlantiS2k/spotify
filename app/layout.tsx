@@ -9,6 +9,7 @@ import ModalProvider from '@/providers/ModalProvider';
 import SupaBaseProvider from '@/providers/SupaBaseProvider';
 import ToastProvider from '@/providers/ToastProvider';
 import UseProvider from '@/providers/UseProvider';
+import getSongsUserId from '@/services/getSongsId';
 
 const fontStyle = Figtree({ subsets: ['latin'] });
 
@@ -39,11 +40,12 @@ export const metadata: Metadata = {
   applicationName: siteConf.applicationName,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const songByUserId = getSongsUserId();
   return (
     <html lang="en">
       <body className={fontStyle.className}>
@@ -51,7 +53,7 @@ export default function RootLayout({
         <SupaBaseProvider>
           <UseProvider>
             <ModalProvider />
-            <SideBar>{children}</SideBar>
+            <SideBar songs={songByUserId}>{children}</SideBar>
           </UseProvider>
         </SupaBaseProvider>
       </body>
