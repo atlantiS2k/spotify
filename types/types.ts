@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 export interface Songs {
   id: string;
   userId: string;
-  imagePath: string;
+  image_path: string;
   author: string;
   title: string;
   songPath: string;

@@ -10,7 +10,7 @@ const useLoadImage = (song: Songs) => {
 
   const { data: imageData } = supaBaseClient.storage
     .from('images')
-    .getPublicUrl(song.imagePath);
+    .getPublicUrl(song.image_path);
 
   return imageData.publicUrl;
 };

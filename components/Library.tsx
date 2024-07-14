@@ -1,4 +1,5 @@
 'use client';
+
 import { AiOutlinePlus } from 'react-icons/ai';
 import { TbPlaylist } from 'react-icons/tb';
 
@@ -6,22 +7,25 @@ import { useAuthModal } from '@/hooks/useAuthModal';
 import { useUploadModal } from '@/hooks/useUploadModal';
 import { useUser } from '@/hooks/useUser';
 import { Songs } from '@/types/types';
+
 interface LibraryProps {
-  songs: Songs[];
+  song: Songs[];
 }
-const Library = ({ _songs }: LibraryProps) => {
-  const autModal = useAuthModal();
+
+const Library = ({ song }: LibraryProps) => {
+  const authModal = useAuthModal();
   const uploadModal = useUploadModal();
 
   const { user } = useUser();
 
   const onClick = () => {
     if (!user) {
-      return autModal.onOpen();
+      return authModal.onOpen();
     }
 
     return uploadModal.onOpen();
   };
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-between px-5 pt-4">
@@ -35,7 +39,7 @@ const Library = ({ _songs }: LibraryProps) => {
           className="text-neutral-400 cursor-pointer hover:text-white transition"
         />
       </div>
-      <div className="flex flex-col gap-y-2 mt-4 px-3">List of song</div>
+      <div className="flex flex-col gap-y-2 mt-4 px-3">list songs</div>
     </div>
   );
 };

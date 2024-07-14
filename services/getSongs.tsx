@@ -1,11 +1,11 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import toast from 'react-hot-toast';
 
 import { Songs } from '@/types/types';
 
 const getSongs = async (): Promise<Songs[]> => {
-  const supabase = createClientComponentClient({
+  const supabase = createServerComponentClient({
     cookies: cookies,
   });
 

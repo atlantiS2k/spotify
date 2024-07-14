@@ -14,6 +14,7 @@ interface SideBarProps {
   children: React.ReactNode;
   songs: Songs[];
 }
+
 const SideBar = ({ children, songs }: SideBarProps) => {
   const pathname = usePathname();
 
@@ -34,6 +35,7 @@ const SideBar = ({ children, songs }: SideBarProps) => {
     ],
     [pathname]
   );
+
   return (
     <div className="flex h-full">
       <div className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p-2">
@@ -45,7 +47,7 @@ const SideBar = ({ children, songs }: SideBarProps) => {
           </div>
         </Box>
         <Box className="overflow-y-auto h-full">
-          <Library songs={songs} />
+          <Library song={songs} />
         </Box>
       </div>
       <main className="h-full flex-1 overflow-y-auto py-2">{children}</main>
